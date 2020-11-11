@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Parse from './Parse.js';
 
 
 class ReviewApp extends React.Component {
@@ -11,6 +12,12 @@ class ReviewApp extends React.Component {
     this.state = {
       example: ''
     }
+  }
+
+  componentDidMount() {
+    Parse.getAllList((data) => {
+      console.log(data.results)
+    })
   }
     
   
@@ -21,7 +28,7 @@ class ReviewApp extends React.Component {
         <Container>
         <Row>
           <Col>
-            <Row>Star Rating</Row>
+            <Row>Hello Star Rating</Row>
             <Row>% recommend product</Row>
             <Row> Star Chart </Row>
             <Row> Size Review </Row>
