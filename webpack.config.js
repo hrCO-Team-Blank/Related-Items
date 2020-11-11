@@ -1,5 +1,6 @@
 module.exports = {
   entry: __dirname + '/client/src/index.jsx', // The entry point for the Application (Where ReactDOM.render is called)
+  watch: true,
   module: {
     rules: [
       {
