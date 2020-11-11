@@ -1,0 +1,19 @@
+#summary {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+#review {
+  border: 10px solid black;
+}
+
+#body {
+  font-size: 15px;
+}
+
+#date {
+  font-size: 10px;
+  align-content: right;
+  text-align: right;
+  padding-top: 5px;
+}
