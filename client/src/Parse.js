@@ -14,7 +14,19 @@ var Parse = {
         console.error('Failed to fetch list of reviews from Greenfield')
       }
     });
-  } 
+  },
+  // getProductMeta: function(successCB, errorCB = null) {
+  //   $.ajax({
+  //     url: Parse.server + '/meta',
+  //     type: 'GET',
+  //     contentType: 'application/json',
+  //     data: {},
+  //     success: successCB,
+  //     error: errorCB || function(error) {
+  //       console.error('Failed to fetch meta of reviews from Greenfield')
+  //     }
+  //   });
+  // } 
 }
 
 export default Parse

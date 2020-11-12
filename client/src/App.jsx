@@ -5,6 +5,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Parse from './Parse.js';
 import MainReviewPanel from './components/MainReviewPanel.jsx'
+import ProductMeta from './components/ProductMeta.jsx'
 
 
 class ReviewApp extends React.Component {
@@ -20,6 +21,10 @@ class ReviewApp extends React.Component {
       console.log(data.results)
       ReactDOM.render(<MainReviewPanel reviews={data.results}/>, document.getElementById('reviewPannel'))
     })
+    //Parse.getProductMeta((data) => {
+     // console.log(data.results)
+     // ReactDOM.render(<ProductMeta meta={data.results}/>, document.getElementById('productMeta'))
+    //})
   }
     
   
@@ -29,7 +34,8 @@ class ReviewApp extends React.Component {
         <h1>Ratings and reviews</h1>
         <Container>
         <Row>
-          <Col>
+          <Col xs={4}>
+            <div id='productMeta'></div>
             <Row>Hello Star Rating</Row>
             <Row>% recommend product</Row>
             <Row> Star Chart </Row>

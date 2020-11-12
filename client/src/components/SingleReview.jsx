@@ -11,7 +11,7 @@ class SingleReview extends React.Component {
     this.state = {
       reviewId: props.review.review_id,
       body: props.review.body, 
-      date: props.review.date.slice(0, 9), 
+      date: props.review.date.slice(0, 10), 
       helpfulness: props.review.helpfulness,
       photos: props.review.photos,
       rating: props.review.rating,
@@ -27,9 +27,9 @@ class SingleReview extends React.Component {
       <Container id='review' fluid>
         <Row>
           <Col>
-            <StarRating rating={this.state.rating} />
+           
           </Col>
-          <Col id='date' xs={6}>
+          <Col id='date'>
             {this.state.reviewerName} - {this.state.date}
           </Col>
         </Row>
@@ -55,5 +55,7 @@ class SingleReview extends React.Component {
     )
   }
 }
+
+// <StarRating rating={this.state.rating} />
 
 export default SingleReview
