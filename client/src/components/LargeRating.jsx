@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import StarRating from './StarRating.jsx'
 
 class LargeRating extends React.Component {
   constructor(props) {
@@ -11,35 +12,45 @@ class LargeRating extends React.Component {
       ratings: props.ratings,
       averageRating: 0
     }
+    console.log(this.state)
     this.getAverageRating = this.getAverageRating.bind(this);
   }
 
   componentDidMount() {
     this.getAverageRating();
-    ReactDOM.render(this.state.ratings, document.getElementById(number))
   }
 
   getAverageRating() {
-    const sum = this.state.ratings
-    const counter = 0;
-
+    let sum = 0;
+    let counter = 0;
+    console.log(average)
     for (const key in this.state.ratings) {
       sum += key * this.state.ratings[key];
-      counter++;
+      counter += Number(this.state.ratings[key]);
     }
-
+    console.log(counter)
     const average = sum / counter;
+    console.log(average)
     this.setState({averageRating: average});
+    ReactDOM.render(<StarRating rating={average} />, document.getElementById('nf-stars'))
   }
 
   render() {
-    <Container>
-      <Row>
-        <Col>
-          <div id='number'></div>
-        </Col>
-      </Row>
-    </Container>
+    return(
+      <Container>
+        <Row>
+          <Col xs={3}>
+            <div>
+              <p id='nf-number'>{this.state.averageRating}</p>
+            </div>
+          </Col>
+          <Col>
+            <div id='nf-stars'>
+            </div>
+          </Col>
+        </Row>
+      </Container>
+    )
   }
 }
 

@@ -30,7 +30,7 @@ class SingleReview extends React.Component {
            
           </Col>
           <Col id='date'>
-            {this.state.reviewerName} - {this.state.date}
+            {this.state.reviewerName}: {this.state.date}
           </Col>
         </Row>
         <Row>

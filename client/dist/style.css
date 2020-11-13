@@ -17,3 +17,14 @@
   text-align: right;
   padding-top: 5px;
 }
+
+#nf-number {
+  font-size: 50px;
+  text-align: center;
+  font-weight: bolder;
+}
+
+#nf-stars {
+  align-items: left;
+  align-content: left;
+}

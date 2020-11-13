@@ -7,6 +7,7 @@ class StarRating extends React.Component {
     this.state = {
       rating: props.rating
     }
+    console.log(this.state.rating)
   }
 
   render() {
