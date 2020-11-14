@@ -1,8 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import { Container, Row, Col, Button } from 'react-bootstrap';
 import Parse from './Parse.js';
 import MainReviewPanel from './components/MainReviewPanel.jsx'
 import ProductMeta from './components/ProductMeta.jsx'
@@ -13,7 +11,8 @@ class ReviewApp extends React.Component {
   constructor() {
     super();
     this.state = {
-      example: ''
+      example: '',
+      numberOfReviews: ''
     }
   }
 
@@ -21,6 +20,7 @@ class ReviewApp extends React.Component {
     Parse.getAllList((data) => {
       console.log(data.results)
       ReactDOM.render(<MainReviewPanel reviews={data.results}/>, document.getElementById('reviewPannel'))
+      this.setState({numberOfReviews: data.results.length})
     });
     Parse.getProductMeta((meta) => {
      console.log(meta)
@@ -32,17 +32,25 @@ class ReviewApp extends React.Component {
   render() {
     return ( 
       <div>
-        <h1>Ratings and reviews</h1>
         <Container>
+        <Row>
+          <h3>RATINGS & REVIEWS</h3>
+          <br></br>
+          <br></br>
+        </Row>
         <Row>
           <Col xs={4}>
             <div id='productMeta'></div>
-            <Row> Star Chart </Row>
-            <Row> Size Review </Row>
-            <Row> Comfort Review </Row>
           </Col>
-          <Col xs={6}>All Reviews
+          <Col fluid>
+          <br></br>
+            <h4><b>{this.state.numberOfReviews} reviews, sorted by <u>relevance</u></b></h4>
             <div id='reviewPannel'></div>
+            <br></br>
+            <br></br>
+            <Button> Add Review + </Button>
+            <br></br>
+            <br></br>
           </Col>
         </Row>
       </Container>

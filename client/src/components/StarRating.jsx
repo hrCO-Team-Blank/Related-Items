@@ -5,14 +5,14 @@ class StarRating extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      rating: props.rating
+      rating: props.rating,
+      starDimension: `${props.starDimension}px`
     }
-    console.log(this.state.rating)
   }
 
   render() {
     return (
-      <StarRatings rating={this.state.rating} numberOfStars={5} name='rating' starDimension='15px' starSpacing='2px' starRatedColor='blue'/>
+      <StarRatings rating={this.state.rating} numberOfStars={5} name='rating' starDimension={this.state.starDimension} starSpacing='2px' starRatedColor='light gray'/>
     )
   }
 }

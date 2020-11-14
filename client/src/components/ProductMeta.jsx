@@ -1,9 +1,7 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import { Row } from 'react-bootstrap';
 import LargeRating from './LargeRating.jsx';
+import StarChart from './StarChart.jsx'
 
 class ProductMeta extends React.Component {
   constructor(props) {
@@ -40,7 +38,10 @@ class ProductMeta extends React.Component {
           <LargeRating ratings={this.state.ratings} />
         </Row>
         <Row>
-          <p><b>{this.state.percRecommended}</b>% Recommend This Product</p>
+          <p><b>{this.state.percRecommended}</b>% of Reviewers Recommend This Product</p>
+        </Row>
+        <Row>
+          <StarChart ratings={this.state.ratings} />
         </Row>
       </div>
     )

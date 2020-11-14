@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import SingleReview from './SingleReview.jsx';
 
 class MainReviewPanel extends React.Component {

@@ -23,16 +23,13 @@ class LargeRating extends React.Component {
   getAverageRating() {
     let sum = 0;
     let counter = 0;
-    console.log(average)
     for (const key in this.state.ratings) {
       sum += key * this.state.ratings[key];
       counter += Number(this.state.ratings[key]);
     }
-    console.log(counter)
-    const average = sum / counter;
-    console.log(average)
-    this.setState({averageRating: average});
-    ReactDOM.render(<StarRating rating={average} />, document.getElementById('nf-stars'))
+    const average = (sum / counter);
+    this.setState({averageRating: average.toFixed(1)});
+    ReactDOM.render(<StarRating starDimension={20} rating={average} />, document.getElementById('nf-stars'))
   }
 
   render() {
