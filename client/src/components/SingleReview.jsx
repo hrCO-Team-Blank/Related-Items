@@ -1,9 +1,7 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Container from 'react-bootstrap/Container';
-import StarRating from './StarRating.jsx'
+import { Container, Row, Col } from 'react-bootstrap';
+import StarRating from './StarRating.jsx';
+import Parse from '../Parse.js';
 
 class SingleReview extends React.Component {
   constructor(props) {
@@ -16,46 +14,96 @@ class SingleReview extends React.Component {
       photos: props.review.photos,
       rating: props.review.rating,
       recommend: props.review.recommend,
+      didRecommend: '',
       response: props.review.response,
       reviewerName: props.review.reviewer_name,
-      summary: props.review.summary
+      summary: props.review.summary,
+      isHelpful: 0,
     }
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  componentDidMount() {
+    if(this.state.recommend == 1) {
+      this.setState({didRecommend: `I Recommend This Product`})
+    }
+    this.formatDate();
+  }
+
+  handleClick() {
+    if(this.state.isHelpful === 0) {
+      const newResult = this.state.helpfulness + 1;
+      this.setState({helpfulness: newResult});
+      this.setState({isHelpful: 1});
+      Parse.markAsHelpful(this.state.reviewId, (result) => {
+        console.log(result);
+      })
+    }
+  }
+
+  formatDate() {
+    let dateArray = this.state.date.split('-');
+    let newDate = `${dateArray[2]}, ${dateArray[0]}`
+    if(dateArray[1] === '01') {
+      newDate = 'January ' + newDate;
+    } else if (dateArray[1] === '02') {
+      newDate = 'February ' + newDate;
+    } else if (dateArray[1] === '03') {
+      newDate = 'March ' + newDate;
+    } else if (dateArray[1] === '04') {
+      newDate = 'April ' + newDate;
+    } else if (dateArray[1] === '05') {
+      newDate = 'May ' + newDate;
+    } else if (dateArray[1] === '06') {
+      newDate = 'June ' + newDate;
+    } else if (dateArray[1] === '07') {
+      newDate = 'July ' + newDate;
+    } else if (dateArray[1] === '08') {
+      newDate = 'August ' + newDate;
+    } else if (dateArray[1] === '09') {
+      newDate = 'September ' + newDate;
+    } else if (dateArray[1] === '10') {
+      newDate = 'October ' + newDate;
+    } else if (dateArray[1] === '11') {
+      newDate = 'November ' + newDate;
+    } else {
+      newDate = 'December ' + newDate;
+    }
+    return this.setState({date: newDate})
   }
 
   render() {
     return (
       <Container id='review' fluid>
         <Row>
-          <Col>
-           
+          <Col id='reviewPanelStars'>
+          <StarRating starDimension={15} rating={this.state.rating} />
           </Col>
           <Col id='date'>
-            {this.state.reviewerName}: {this.state.date}
+            <br></br>
+            <p>{this.state.reviewerName}, {this.state.date}</p>
           </Col>
         </Row>
         <Row>
-          <Col id='summary'>{this.state.summary}</Col>
+          <Col id='summary'><p>{this.state.summary}</p></Col>
         </Row>
         <Row>
-          <Col id='body'>{this.state.body}</Col>
+          <Col id='body'><p>{this.state.body}</p></Col>
         </Row>
         <Row>
-          <Col>Recommend Product</Col>
+          <Col><p className='didRecommend'><b>{this.state.didRecommend}</b></p></Col>
         </Row>
         <Row>
-          <Col>{this.props.response}</Col>
+          <Col><p>{this.state.response}</p></Col>
         </Row>
         <Row>
-          <Col>Helpful</Col>
-          <Col>Report</Col>
-          <Col></Col>
-          <Col></Col>
+        <Col><p> Helpful? &nbsp;<a href='#' className='helpful' onClick={this.handleClick}>Yes</a> ({this.state.helpfulness}) &nbsp; &nbsp;| &nbsp; &nbsp;   <u>Report</u></p></Col>
         </Row>
       </Container>
     )
   }
 }
 
-// <StarRating rating={this.state.rating} />
+// 
 
 export default SingleReview
