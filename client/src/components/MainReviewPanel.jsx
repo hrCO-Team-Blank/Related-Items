@@ -3,19 +3,20 @@ import SingleReview from './SingleReview.jsx';
 
 class MainReviewPanel extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
-      allReviews: props.reviews
+      reviews: props.reviews
     }
   }
 
-
   render() {
-    return this.state.allReviews.map((review) =>
+  return (
+    this.state.reviews.map((review) =>
       <SingleReview review={review} />
-    )
-  }
+    ))
+  }  
 }
+
 
 export default MainReviewPanel
 

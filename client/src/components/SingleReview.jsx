@@ -2,6 +2,7 @@ import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import StarRating from './StarRating.jsx';
 import Parse from '../Parse.js';
+import { Checkmark } from 'react-checkmark';
 
 class SingleReview extends React.Component {
   constructor(props) {
@@ -24,9 +25,6 @@ class SingleReview extends React.Component {
   }
 
   componentDidMount() {
-    if(this.state.recommend == 1) {
-      this.setState({didRecommend: `I Recommend This Product`})
-    }
     this.formatDate();
   }
 
@@ -73,6 +71,12 @@ class SingleReview extends React.Component {
   }
 
   render() {
+    let recommend;
+    if(this.state.recommend === 1) {
+      recommend = <span>&#10003; &nbsp; I Recommend This Product</span>
+    } else {
+      recommend = '';
+    }
     return (
       <Container id='review' fluid>
         <Row>
@@ -91,7 +95,7 @@ class SingleReview extends React.Component {
           <Col id='body'><p>{this.state.body}</p></Col>
         </Row>
         <Row>
-          <Col><p className='didRecommend'><b>{this.state.didRecommend}</b></p></Col>
+          <Col id='didRecommend'>{recommend}</Col>
         </Row>
         <Row>
           <Col><p>{this.state.response}</p></Col>
