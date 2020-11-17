@@ -19,6 +19,8 @@ class AddReviewForm extends React.Component {
       quality: 0,
       length: 0,
       fit: 0,
+      summaryChar: 0,
+      bodyChar: 0
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -30,6 +32,11 @@ class AddReviewForm extends React.Component {
     const name = target.name;
     if(name === 'doRecommend' || name === 'fit' || name === 'size' || name === 'width' || name === 'comfort' || name === 'quality' || name === 'length' || name === 'stars') {
       value = Number(value);
+    }
+    if(name === 'body') {
+      this.setState({bodyChar: value.length})
+    } else if(name === 'summary') {
+      this.setState({summaryChar: value.length})
     }
     this.setState({
       [name]: value
@@ -54,13 +61,11 @@ class AddReviewForm extends React.Component {
       '17': this.state.quality
 
     }
-
-
     const body = {
-      rating: 5,
+      rating: 1,
       summary: this.state.summary,
       body: this.state.body,
-      recommend: true,
+      recommend: false,
       name: this.state.nickname,
       email: this.state.email,
       characteristics: characteristicsObj
@@ -72,7 +77,6 @@ class AddReviewForm extends React.Component {
         console.log(result)
       }
     })
-    console.log(body)
   }
 
   render() {
@@ -93,13 +97,9 @@ class AddReviewForm extends React.Component {
           </Col>
         </Form.Row>
           <Form.Group>
-          <Form.Label id='formQuestions'>What is your overall rating of this product?&nbsp; &nbsp; &nbsp;</Form.Label> <br></br>
-            <CustomStarRating handleClick={this.handleStarClick = this.handleStarClick.bind(this)}/>
-            {/* <Form.Check inline name='stars' value={5} label='5 Stars' type='radio' id='inline-radio1' onChange={this.handleChange} />
-            <Form.Check inline name='stars' value={4} label='4 Stars' type='radio' id='inline-radio1' onChange={this.handleChange} />
-            <Form.Check inline name='stars' value={3} label='3 Stars' type='radio' id='inline-radio1' onChange={this.handleChange} />
-            <Form.Check inline name='stars' value={2} label='2 Stars' type='radio' id='inline-radio1' onChange={this.handleChange} />
-            <Form.Check inline name='stars' value={1} label='1 Star' type='radio' id='inline-radio1' onChange={this.handleChange} /> */}
+            <Form.Label id='formQuestions'>What is your overall rating of this product?&nbsp; &nbsp; &nbsp;</Form.Label>
+              <br></br>
+              <CustomStarRating handleClick={this.handleStarClick = this.handleStarClick.bind(this)}/>
           </Form.Group>
           <Form.Group>
             <Form.Label inline  id='formQuestions'>Do You Recommend This Product?&nbsp; &nbsp; &nbsp;</Form.Label>
@@ -108,9 +108,11 @@ class AddReviewForm extends React.Component {
           </Form.Group>
           <Form.Group>
             <Form.Control required name='summary' value={this.state.summary} maxlength='60' type='text' placeholder='Enter Review Title' onChange={this.handleChange} />
+            <p id='summaryChar'>{this.state.summaryChar}/60</p>
           </Form.Group>
           <Form.Group>
             <Form.Control as='textarea' name='body' value={this.state.body} required maxlength='1000' type='text' placeholder='Enter Full Review' onChange={this.handleChange} />
+            <p id='bodyChar'>{this.state.bodyChar}/1,000</p>
           </Form.Group>
           <Form.Group>
             <Form.Label id='formQuestions'>How Was the Quality of the Product You Recieved</Form.Label>
