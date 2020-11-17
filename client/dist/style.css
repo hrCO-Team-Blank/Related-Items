@@ -87,3 +87,21 @@
   cursor: pointer;
   transition: color 200ms;
 }
+
+#charCount {
+  text-align: right;
+}
+
+.error {
+  border: 1px solid red;
+}
+
+#emailError {
+  font-size: 10px;
+  color: darkred;
+  text-align: right;
+}
+
+#requiredField {
+  text-align: right;
+}
