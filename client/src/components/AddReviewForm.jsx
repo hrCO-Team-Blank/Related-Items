@@ -19,14 +19,14 @@ class AddReviewForm extends React.Component {
       quality: 0,
       length: 0,
       fit: 0,
-      starsError: false,
-      doRecommendError: false,
       summaryChar: 0,
       bodyChar: 0,
       nicknameError: false,
       emailError: false,
-      bodyError: false,
+      starsError: false,
+      doRecommendError: false,
       summaryError: false,
+      bodyError: false,
       qualityError: false, 
       comfortError: false,
       sizeError: false,
@@ -145,7 +145,7 @@ class AddReviewForm extends React.Component {
     }
 
     if(this.state.starsError === true || this.state.doRecommendError === true || this.state.nicknameError === true || this.state.bodyError === true || this.state.summaryError === true || this.state.qualityError === true || this.state.comfortError === true || this.state.sizeError === true || this.state.lengthError === true || this.state.widthError === true || this.state.fitError === true || this.state.emailError === true ) {
-      console.log(error)
+      console.log('error')
     } else {
       this.handleSubmit()
     }
@@ -194,7 +194,7 @@ class AddReviewForm extends React.Component {
         <Form.Row>
           <Col>
             <Form.Group>
-                <Form.Control required name='nickname' required maxlength='20' type='text' placeholder='Enter Username*' value={this.state.nickname} onChange={this.handleChange} className={this.state.nicknameError ? 'error' : ''}/>
+                <Form.Control name='nickname' maxlength='20' type='text' placeholder='Enter Username*' value={this.state.nickname} onChange={this.handleChange} className={this.state.nicknameError ? 'error' : ''}/>
             </Form.Group>
           </Col>
           <Col>
