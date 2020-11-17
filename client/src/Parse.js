@@ -40,15 +40,18 @@ const Parse = {
       }
     })
   },
-  // submitReview: function(jsonParser, successCB) {
-  //   app.post('http://52.26.193.201:3000/reviews/5', jsonParser, (err, result) => {
-  //     if(err) {
-  //       console.error('Failed to post product review from Greenfield')
-  //     } else {
-  //       successCB(null, result)
-  //     }
-  //   })
-  // }
+  submitReview: function(obj, successCB, errorCB = null) {
+    $.ajax({
+      url: Parse.server,
+      type: 'Post',
+      contentType: 'application/json',
+      data: obj,
+      success: successCB,
+      error: errorCB || function(error) {
+        console.error('Failed to fetch meta of reviews from Greenfield')
+      }
+    });
+  } 
 }
 
 export default Parse

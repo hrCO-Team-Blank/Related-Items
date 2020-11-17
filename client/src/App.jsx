@@ -40,14 +40,18 @@ class ReviewApp extends React.Component {
 
 
   handleMoreReviews() {
-    console.log('ran')
     let moreReviews = this.state.reviews.splice(0, 2);
-    var allReviewsToShow = moreReviews.concat(this.state.reviewsToShow)
-    console.log(allReviewsToShow)
-    console.log(this.state.reviews)
-    this.setState({reviewsToShow: allReviewsToShow})
+    if(moreReviews[0] !== undefined) {
+      this.state.reviewsToShow.push(moreReviews[0])
+    }
+    if(moreReviews[1] !== undefined) {
+      this.state.reviewsToShow.push(moreReviews[1])
+    }
+    this.setState({reviewsToShow: this.state.reviewsToShow})
     this.setState({reviews: this.state.reviews})
+
     ReactDOM.unmountComponentAtNode(document.getElementById('reviewPannel'))
+
     ReactDOM.render(<MainReviewPanel reviews={this.state.reviewsToShow} />, document.getElementById('reviewPannel'))
   }
 
@@ -102,5 +106,3 @@ class ReviewApp extends React.Component {
 }
 
 export default ReviewApp;
-
-ReactDOM.render(<ReviewApp/>, document.getElementById('root'));

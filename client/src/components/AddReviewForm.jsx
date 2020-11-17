@@ -1,6 +1,7 @@
 import React from 'react';
 import Parse from '../Parse.js'
 import { Col, Button, Form } from 'react-bootstrap'
+import CustomStarRating from './CustomStarRating.jsx'
 
 class AddReviewForm extends React.Component {
   constructor() {
@@ -21,6 +22,7 @@ class AddReviewForm extends React.Component {
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleStarClick = this.handleStarClick.bind(this);
   }
   handleChange(event) {
     const target = event.target;
@@ -35,6 +37,14 @@ class AddReviewForm extends React.Component {
     console.log(this.state)
   }
 
+  handleStarClick(stars) {
+    // console.log(event.target)
+    // let stars = event.target.value
+    console.log(stars)
+    this.setState({stars: stars})
+    console.log(this.state.stars)
+  }
+
   handleSubmit(event) {
     event.preventDefault();
     const characteristicsObj = {
@@ -45,8 +55,9 @@ class AddReviewForm extends React.Component {
 
     }
 
+
     const body = {
-      rating: this.state.stars,
+      rating: 5,
       summary: this.state.summary,
       body: this.state.body,
       recommend: true,
@@ -54,7 +65,7 @@ class AddReviewForm extends React.Component {
       email: this.state.email,
       characteristics: characteristicsObj
     }
-    Parse.submitReview(body, (err, result) => {
+    Parse.submitReview(JSON.stringify(body), (err, result) => {
       if(err) {
         console.log(err)
       } else {
@@ -83,11 +94,12 @@ class AddReviewForm extends React.Component {
         </Form.Row>
           <Form.Group>
           <Form.Label id='formQuestions'>What is your overall rating of this product?&nbsp; &nbsp; &nbsp;</Form.Label> <br></br>
-            <Form.Check inline name='stars' value={5} label='5 Stars' type='radio' id='inline-radio1' onChange={this.handleChange} />
+            <CustomStarRating handleClick={this.handleStarClick = this.handleStarClick.bind(this)}/>
+            {/* <Form.Check inline name='stars' value={5} label='5 Stars' type='radio' id='inline-radio1' onChange={this.handleChange} />
             <Form.Check inline name='stars' value={4} label='4 Stars' type='radio' id='inline-radio1' onChange={this.handleChange} />
             <Form.Check inline name='stars' value={3} label='3 Stars' type='radio' id='inline-radio1' onChange={this.handleChange} />
             <Form.Check inline name='stars' value={2} label='2 Stars' type='radio' id='inline-radio1' onChange={this.handleChange} />
-            <Form.Check inline name='stars' value={1} label='1 Star' type='radio' id='inline-radio1' onChange={this.handleChange} />
+            <Form.Check inline name='stars' value={1} label='1 Star' type='radio' id='inline-radio1' onChange={this.handleChange} /> */}
           </Form.Group>
           <Form.Group>
             <Form.Label inline  id='formQuestions'>Do You Recommend This Product?&nbsp; &nbsp; &nbsp;</Form.Label>

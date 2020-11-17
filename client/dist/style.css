@@ -78,3 +78,12 @@
   font-size: 13px;
   padding-top: 10px;
 }
+
+#customRating {
+  display: none;
+}
+
+.customStar {
+  cursor: pointer;
+  transition: color 200ms;
+}
