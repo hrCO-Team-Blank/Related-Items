@@ -1,6 +1,7 @@
 import $ from 'jquery';
+import axios from 'axios';
 
-var Parse = {
+const Parse = {
   server: 'http://52.26.193.201:3000/reviews/5',
 
   getAllList: function(successCB, errorCB = null) {
@@ -35,10 +36,19 @@ var Parse = {
       data: {},
       success: successCB,
       error: errorCB || function(error) {
-        console.error('Failed to fetch meta of reviews from Greenfield')
+        console.error('Failed to mark review as helpful from Greenfield')
       }
     })
-  }
+  },
+  // submitReview: function(jsonParser, successCB) {
+  //   app.post('http://52.26.193.201:3000/reviews/5', jsonParser, (err, result) => {
+  //     if(err) {
+  //       console.error('Failed to post product review from Greenfield')
+  //     } else {
+  //       successCB(null, result)
+  //     }
+  //   })
+  // }
 }
 
 export default Parse

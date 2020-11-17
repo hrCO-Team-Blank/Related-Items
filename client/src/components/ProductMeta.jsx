@@ -2,6 +2,7 @@ import React from 'react';
 import { Row } from 'react-bootstrap';
 import LargeRating from './LargeRating.jsx';
 import StarChart from './StarChart.jsx'
+import Characteristics from './characteristics.jsx'
 
 class ProductMeta extends React.Component {
   constructor(props) {
@@ -42,6 +43,10 @@ class ProductMeta extends React.Component {
         </Row>
         <Row>
           <StarChart ratings={this.state.ratings} />
+        </Row>
+        <br></br>
+        <Row>
+          <Characteristics stats={this.state.characteristics} />
         </Row>
       </div>
     )

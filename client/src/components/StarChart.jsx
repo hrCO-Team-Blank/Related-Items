@@ -23,19 +23,19 @@ class StarChart extends React.Component {
           <Row>
             <Col>
               <Row>
-                <u>1 Stars</u> <ProgressBar value={this.state.oneStars} />
+                <u>1 Stars</u> <ProgressBar value={this.state.oneStars} width={75}/>
               </Row>
               <Row>
-                <u>2 Stars</u>  <ProgressBar value={this.state.twoStars} />
+                <u>2 Stars</u>  <ProgressBar value={this.state.twoStars} width={75} />
               </Row>
               <Row>
-                <u>3 Stars</u>  <ProgressBar value={this.state.threeStars} />
+                <u>3 Stars</u>  <ProgressBar value={this.state.threeStars} width={75} />
               </Row>
               <Row>
-                <u>4 Stars</u>  <ProgressBar value={this.state.fourStars} />
+                <u>4 Stars</u>  <ProgressBar value={this.state.fourStars} width={75} />
               </Row>
               <Row>
-                <u>5 Stars</u>  <ProgressBar value={this.state.fiveStars} />
+                <u>5 Stars</u>  <ProgressBar value={this.state.fiveStars} width={75} />
               </Row>
             </Col>
           </Row>

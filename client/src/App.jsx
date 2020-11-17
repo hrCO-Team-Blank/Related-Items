@@ -14,9 +14,12 @@ class ReviewApp extends React.Component {
       reviews: [],
       reviewsToShow: [],
       example: '',
-      numberOfReviews: ''
+      numberOfReviews: '',
+      addReview: 0,
+      meta: {},
     }
     this.handleMoreReviews = this.handleMoreReviews.bind(this);
+    this.handleAddReview = this.handleAddReview.bind(this)
   }
 
   componentDidMount() {
@@ -26,11 +29,12 @@ class ReviewApp extends React.Component {
       let twoReviews = data.results.splice(0, 2)
       this.setState({reviews: data.results})
       this.setState({reviewsToShow: twoReviews})
-      ReactDOM.render(<MainReviewPanel reviews={this.state.reviews} />, document.getElementById('reviewPannel3'))
+      ReactDOM.render(<MainReviewPanel reviews={this.state.reviewsToShow} />, document.getElementById('reviewPannel'))
     });
     Parse.getProductMeta((meta) => {
      console.log(meta)
-     ReactDOM.render(<ProductMeta meta={meta}/>, document.getElementById('productMeta'))
+     this.setState({meta: meta})
+     ReactDOM.render(<ProductMeta meta={this.state.meta}/>, document.getElementById('productMeta'))
     });
   }
 
@@ -38,16 +42,31 @@ class ReviewApp extends React.Component {
   handleMoreReviews() {
     console.log('ran')
     let moreReviews = this.state.reviews.splice(0, 2);
-    this.setState({reviewsToShow: this.state.reviewsToShow.concat(moreReviews)})
+    var allReviewsToShow = moreReviews.concat(this.state.reviewsToShow)
+    console.log(allReviewsToShow)
+    console.log(this.state.reviews)
+    this.setState({reviewsToShow: allReviewsToShow})
     this.setState({reviews: this.state.reviews})
     ReactDOM.unmountComponentAtNode(document.getElementById('reviewPannel'))
     ReactDOM.render(<MainReviewPanel reviews={this.state.reviewsToShow} />, document.getElementById('reviewPannel'))
+  }
+
+  handleAddReview() {
+    if(this.state.addReview === 0) {
+      ReactDOM.render(<AddReviewForm />, document.getElementById('reviewForm'))
+      this.setState({addReview: 1})
+    } else {
+      ReactDOM.unmountComponentAtNode(document.getElementById('reviewForm'))
+      this.setState({addReview: 0})
+    }
   }
     
   
   render() {
     return ( 
       <div>
+        <br></br>
+          <br></br>
         <Container>
         <Row>
           <h3>RATINGS & REVIEWS</h3>
@@ -61,20 +80,17 @@ class ReviewApp extends React.Component {
           <Col fluid>
           <br></br>
             <h4><b>{this.state.numberOfReviews} reviews, sorted by <u>relevance</u></b></h4>
-            <div id='reviewPannel'>
-              
-            </div>
-            <div id='reviewPannel1'></div>
-            <div id='reviewPannel2'></div>
-            <div id='reviewPannel3'></div>
+            <div id='reviewPannel'></div>
             <br></br>
             <br></br>
-            <Button id='reviewButton'> Add Review + </Button> &nbsp; &nbsp; &nbsp; &nbsp;
+            <Button id='reviewButton' onClick={this.handleAddReview}> Add Review + </Button> &nbsp; &nbsp; &nbsp; &nbsp;
             <Button id='reviewButton' onClick={this.handleMoreReviews} >Show More Reviews</Button>
             <br></br>
             <br></br>
             <br></br>
-            <AddReviewForm />
+            <div id='reviewForm'>
+
+            </div>
             <br></br>
             <br></br>
           </Col>
