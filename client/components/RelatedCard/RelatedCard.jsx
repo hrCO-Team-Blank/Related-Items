@@ -9,6 +9,10 @@ import { FaStar } from 'react-icons/fa'
 Modal.setAppElement('#RelatedAndOutfit')
 
 const StyledCard = styled.div`
+justify-content: space-around;
+// flex-grow: 4;
+// flex-shrink: 3;
+// flex-basis: 100%
 height: 350px;
 width: 250px;
 margin: 5px;

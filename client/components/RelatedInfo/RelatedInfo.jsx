@@ -10,7 +10,12 @@ const RelatedInfo = ({ product }) => {
   // componentDidMount rendering product info
   useEffect(() => {
     axios.get(`http://52.26.193.201:3000/products/${product}`)
-      .then(res => setInfo([res.data]))
+      .then(
+
+        res => {
+          console.log(res.data)
+          return setInfo([res.data])
+        })
       .catch(err => console.log(err))
   }, []);
 

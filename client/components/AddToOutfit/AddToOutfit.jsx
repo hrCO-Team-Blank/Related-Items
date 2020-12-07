@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import axios from 'axios'
 
 const StyledCard = styled.div`
+display: flex;
 align: center
   height: 350px;
   width: 250px
@@ -21,7 +22,6 @@ const AddToOutfit = ({ mainProduct, clickAddOutfit }) => {
   return (
     <div>
       <StyledCard onClick={() => clickAddOutfit()}>
-        <div>Add to Outfit</div>
         <StyledPlusSign src='./images/plus.jpg' />
       </StyledCard>
     </div >
