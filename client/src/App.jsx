@@ -2,16 +2,16 @@ import React, { Component } from 'react';
 import RelatedCard from '../components/RelatedCard/RelatedCard.jsx'
 import RelatedCardList from '../components/RelatedCardList/RelatedCardList.jsx'
 import OutfitCardList from '../components/OutfitCardList/OutfitCardList.jsx'
-
-import { BrowserRouter as Router, Link, Route } from 'react-router'
+import { BrowserRouter as Router, Link, Route } from 'react-router-dom'
 import axios from 'axios';
+
 // import localStorage from 'local-storage';
 
 class RelatedAndOutfitApp extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      mainProduct: 2,
+      mainProduct: this.props.match.params.id || 1,
       userSession: 121,
       relatedData: [],
       outfitData: []
@@ -22,6 +22,7 @@ class RelatedAndOutfitApp extends Component {
   }
 
   componentDidMount() {
+    console.log(this.props.match.params.id)
     axios.get(`http://52.26.193.201:3000/products/${this.state.mainProduct}/related`)
       .then(res => {
         const relatedProducts = res.data;
