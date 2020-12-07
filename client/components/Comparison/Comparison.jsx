@@ -20,12 +20,10 @@ const Comparison = ({ mainProduct, product, setModalIsOpen }) => {
   }, []);
 
 
-  const StyledTable = styled.div`
-    td {
-      border: 2px solid black;
-    }
-
-  `
+  const StyledCols = styled.td`
+  text-align: center;
+  }
+`
   // Render Features
   // Make array of objects: {feature: [main, related]} Ex. {sole: [rubber, plasic]} or {material: [null, leather]}
   let featureObj = {}
@@ -42,7 +40,7 @@ const Comparison = ({ mainProduct, product, setModalIsOpen }) => {
         featureObj[relatedFeatures[j].feature] = [featureObj[relatedFeatures[j].feature][0], relatedFeatures[j].value]
       } else {
         let relatedFeatureObj = {}
-        featureObj[`${relatedFeatures[j].feature}`] = [null, relatedFeatures[j].value]
+        featureObj[`${relatedFeatures[j].feature} `] = [null, relatedFeatures[j].value]
       }
     }
   }
@@ -57,31 +55,31 @@ const Comparison = ({ mainProduct, product, setModalIsOpen }) => {
             <th>{related[0]['name']}</th>
           </tr>
           <tr>
-            <td>{main[0]['slogan']}</td>
-            <td>Slogan</td>
-            <td>{related[0]['slogan']}</td>
+            <StyledCols>{main[0]['slogan']}</StyledCols>
+            <StyledCols>Slogan</StyledCols>
+            <StyledCols>{related[0]['slogan']}</StyledCols>
           </tr>
           <tr>
-            <td>{main[0]['description']}</td>
-            <td>Description</td>
-            <td>{related[0]['description']}</td>
+            <StyledCols>{main[0]['description']}</StyledCols>
+            <StyledCols>Description</StyledCols>
+            <StyledCols>{related[0]['description']}</StyledCols>
           </tr>
           <tr>
-            <td>{main[0]['category']}</td>
-            <td>Category</td>
-            <td>{related[0]['category']}</td>
+            <StyledCols>{main[0]['category']}</StyledCols>
+            <StyledCols>Category</StyledCols>
+            <StyledCols>{related[0]['category']}</StyledCols>
           </tr>
           <tr>
-            <td>{main[0]['default_price']}</td>
-            <td>Price</td>
-            <td>{related[0]['default_price']}</td>
+            <StyledCols>{main[0]['default_price']}</StyledCols>
+            <StyledCols>Price</StyledCols>
+            <StyledCols>{related[0]['default_price']}</StyledCols>
           </tr>
           {Object.keys(featureObj).map(key => {
             return (
               <tr>
-                <td>{featureObj[key][0] || 'N/A'}</td>
-                <td>{key}</td>
-                <td>{featureObj[key][1] || 'N/A'}</td>
+                <StyledCols>{featureObj[key][0] || 'N/A'}</StyledCols>
+                <StyledCols>{key}</StyledCols>
+                <StyledCols>{featureObj[key][1] || 'N/A'}</StyledCols>
               </tr>
             )
           })

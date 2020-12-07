@@ -3,10 +3,11 @@ import axios from 'axios';
 import styled from 'styled-components'
 
 const StyledThumbnail = styled.img`
-object-fit: cover;
 width: 100%;
-height: 250px;
-background: url(./images/placeholder.png)
+height: 75%;
+margin-top: -35px;
+background-image: linear-gradient(black, white);
+
 `;
 
 

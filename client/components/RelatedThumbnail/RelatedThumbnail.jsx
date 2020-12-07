@@ -6,6 +6,7 @@ const StyledThumbnail = styled.img`
 width: 100%;
 height: 75%;
 margin-top: -35px;
+background-image: linear-gradient(black, white);
 `;
 
 const RelatedThumbnail = ({ product }) => {
