@@ -5,19 +5,19 @@ import OutfitCardList from '../components/OutfitCardList/OutfitCardList.jsx'
 
 import { BrowserRouter as Router, Link, Route } from 'react-router'
 import axios from 'axios';
+// import localStorage from 'local-storage';
 
 class RelatedAndOutfitApp extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      mainProduct: 1,
+      mainProduct: 2,
       userSession: 121,
       relatedData: [],
-      outfitData: [],
-      outfitDataHolding: []
+      outfitData: []
     }
+
     this.clickAddOutfit = this.clickAddOutfit.bind(this)
-    this.gettingOutfit = this.gettingOutfit.bind(this)
     this.clickDeleteOutfit = this.clickDeleteOutfit.bind(this)
   }
 
@@ -27,55 +27,49 @@ class RelatedAndOutfitApp extends Component {
         const relatedProducts = res.data;
         this.setState({ relatedData: relatedProducts })
       })
-
-    axios.get(`http://52.26.193.201:3000/cart/${this.state.userSession}`)
-      .then(res => {
-        const outfits = res.data;
-        let dedupedOutfits = [];
-        outfits.forEach(outfit => {
-          if (!dedupedOutfits.includes(outfit.product_id)) {
-            dedupedOutfits.push(outfit.product_id)
-          }
-        })
-        this.setState(({ outfitData: dedupedOutfits }))
-      })
-  }
-  // when you delete and add same outfit, duplicates arise
-  gettingOutfit() {
-    let addOutfitBody = {
-      user_session: this.state.userSession,
-      product_id: this.state.mainProduct
-    }
-    axios.post(`http://52.26.193.201:3000/cart/`, addOutfitBody)
-      .then(res => {
-        console.log(res);
-        axios.get(`http://52.26.193.201:3000/cart/${this.state.userSession}`)
-          .then(res => {
-            var outfits = res.data;
-            let dedupedOutfits = [];
-            outfits.forEach(outfit => {
-              if (!dedupedOutfits.includes(outfit.product_id)) {
-                dedupedOutfits.push(outfit.product_id)
-              }
-            })
-            this.setState(({ outfitData: dedupedOutfits }))
+      .then(
+        res => {
+          this.setState({
+            outfitData: JSON.parse(localStorage.getItem('outfitLocalStorage')) || []
           })
-      });
+        }
+      )
   }
 
   clickAddOutfit() {
-    //Conditional to prevent duplicate outfits being added to state
-    if (this.state.outfitData.includes(this.state.mainProduct)) {
-      console.log('Outfit exists in this User_ID')
+    console.log(JSON.parse(localStorage.getItem('outfitLocalStorage')))
+    if (!localStorage.getItem('outfitLocalStorage')) {
+      let outfitArr = JSON.stringify([this.state.mainProduct])
+      localStorage.setItem('outfitLocalStorage', outfitArr);
+      this.setState({
+        outfitData: JSON.parse(localStorage.getItem('outfitLocalStorage'))
+      })
+    } else if (JSON.parse(localStorage.getItem('outfitLocalStorage')).includes(this.state.mainProduct)) {
+      console.log('Already exists', this.state.outfitData)
       return;
+    } else {
+      let outfitArr = JSON.stringify([...JSON.parse(localStorage.getItem('outfitLocalStorage')), this.state.mainProduct])
+      localStorage.setItem('outfitLocalStorage', outfitArr);
+      this.setState({
+        outfitData: JSON.parse(localStorage.getItem('outfitLocalStorage'))
+      })
     }
-    return this.gettingOutfit()
   }
 
   clickDeleteOutfit(id) {
-    this.setState(state => ({
-      outfitData: state.outfitData.filter(item => item !== id)
-    }))
+
+    let outfitArr = JSON.parse(localStorage.getItem('outfitLocalStorage'));
+    for (let i = 0; i < outfitArr.length; i++) {
+      if (outfitArr[i] === id) {
+        outfitArr.splice(i, 1)
+      }
+    }
+    localStorage.removeItem('outfitLocalStorage');
+    localStorage.setItem('outfitLocalStorage', JSON.stringify(outfitArr));
+
+    this.setState({
+      outfitData: JSON.parse(localStorage.getItem('outfitLocalStorage'))
+    })
   }
 
   render() {

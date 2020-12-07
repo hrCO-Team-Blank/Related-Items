@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import styled from 'styled-components'
 import axios from 'axios';
+
 
 
 const Comparison = ({ mainProduct, product, setModalIsOpen }) => {
@@ -17,6 +19,13 @@ const Comparison = ({ mainProduct, product, setModalIsOpen }) => {
       .catch(err => console.log(err))
   }, []);
 
+
+  const StyledTable = styled.div`
+    td {
+      border: 2px solid black;
+    }
+
+  `
   // Render Features
   // Make array of objects: {feature: [main, related]} Ex. {sole: [rubber, plasic]} or {material: [null, leather]}
   let featureObj = {}
