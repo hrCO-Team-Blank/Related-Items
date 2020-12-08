@@ -21,18 +21,26 @@ const OutfitInfo = ({ outfit }) => {
 
   return (
     <div>
-      <StyledInfo>
-        <StarRating outfit={outfit} />
-      </StyledInfo>
-      <StyledInfo>
-        {info.length && info[0]['name']}
-      </StyledInfo>
-      <StyledInfo>
-        <em>{info.length && info[0]['category']}</em>
-      </StyledInfo>
-      <StyledInfo>
-        $ {info.length && info[0]['default_price']}
-      </StyledInfo>
+      {info.length > 0 ?
+        <div>
+          <StyledInfo>
+            <StarRating outfit={outfit} />
+          </StyledInfo>
+
+          <StyledInfo>
+            {info[0]['name']}
+          </StyledInfo>
+
+          <StyledInfo>
+            <em>{info[0]['category']}</em>
+          </StyledInfo>
+
+          <StyledInfo>
+            $ {info[0]['default_price']}
+          </StyledInfo>
+        </div> : null
+      }
+
     </div>
   );
 }

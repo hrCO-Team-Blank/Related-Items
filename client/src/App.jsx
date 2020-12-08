@@ -5,7 +5,7 @@ import OutfitCardList from '../components/OutfitCardList/OutfitCardList.jsx'
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom'
 import axios from 'axios';
 import styled from 'styled-components'
-
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 // import localStorage from 'local-storage';
 const StyledHeader = styled.h1`
@@ -21,7 +21,6 @@ class RelatedAndOutfitApp extends Component {
       relatedData: [],
       outfitData: []
     }
-
     this.clickAddOutfit = this.clickAddOutfit.bind(this)
     this.clickDeleteOutfit = this.clickDeleteOutfit.bind(this)
   }
@@ -89,7 +88,6 @@ class RelatedAndOutfitApp extends Component {
             mainProduct={this.state.mainProduct}
           />
         </div>
-
         <div>
           <StyledHeader>Your Outfit</StyledHeader>
           <OutfitCardList

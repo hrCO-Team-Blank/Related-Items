@@ -25,7 +25,7 @@ const OutfitThumbnail = ({ outfit }) => {
 
   return (
     <div>
-      {styles.length && <StyledThumbnail src={styles[0]['results'][0]['photos'][0]['thumbnail_url']} />}
+      {styles.length ? <StyledThumbnail src={styles[0]['results'][0]['photos'][0]['thumbnail_url']} /> : null}
     </div>
   );
 }

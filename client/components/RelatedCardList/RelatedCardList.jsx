@@ -59,44 +59,13 @@ const RelatedCardList = ({ relatedData, mainProduct }) => {
           },
         ]}
     >
-      {
-        relatedData.length && relatedData.map((product, index) =>
-          // passing on the id of each related item
-          <RelatedCard product={product} mainProduct={mainProduct} key={index} />
-        )
+      {relatedData.map((product, index) =>
+        // passing on the id of each related item
+        <RelatedCard product={product} mainProduct={mainProduct} key={index} />
+      )
       }
     </StyledCarousel>
   );
 }
 
 export default RelatedCardList;
-
-
-// breakpoints = {
-//   [
-//     {
-//       size: 200,
-//       settings: {
-//         slidesToShow: 1,
-//         showArrows: true,
-//         showIndicator: true,
-//       },
-//     },
-//     {
-//       size: 600,
-//       settings: {
-//         slidesToShow: 3,
-//         showArrows: true,
-//         showIndicator: true,
-//       },
-//     },
-//     {
-//       size: 1000,
-//       settings: {
-//         slidesToShow: 4,
-//         showArrows: true,
-//         showIndicator: true,
-//         center: true,
-//       },
-//     },
-// ]}

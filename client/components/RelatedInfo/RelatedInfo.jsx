@@ -16,9 +16,7 @@ const RelatedInfo = ({ product }) => {
   useEffect(() => {
     axios.get(`http://52.26.193.201:3000/products/${product}`)
       .then(
-
         res => {
-          console.log(res.data)
           return setInfo([res.data])
         })
       .catch(err => console.log(err))
@@ -27,20 +25,22 @@ const RelatedInfo = ({ product }) => {
 
 
   return (
-    <div>
-      <StyledInfo>
-        <StarRating outfit={product} />
-      </StyledInfo>
-      <StyledInfo>
-        {info.length && info[0]['name']}
-      </StyledInfo>
-      <StyledInfo>
-        <em>{info.length && info[0]['category']}</em>
-      </StyledInfo>
+    <div>{info.length ?
+      <div>
+        <StyledInfo>
+          <StarRating outfit={product} />
+        </StyledInfo>
+        <StyledInfo>
+          {info[0]['name']}
+        </StyledInfo>
+        <StyledInfo>
+          <em>{info[0]['category']}</em>
+        </StyledInfo>
 
-      <StyledInfo>
-        $ {info.length && info[0]['default_price']}
-      </StyledInfo>
+        <StyledInfo>
+          $ {info[0]['default_price']}
+        </StyledInfo>
+      </div> : null}
     </div>
   );
 }

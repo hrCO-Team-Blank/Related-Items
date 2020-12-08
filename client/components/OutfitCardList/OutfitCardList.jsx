@@ -17,9 +17,7 @@ const OutfitCardList = ({ outfitData, mainProduct, clickAddOutfit, clickDeleteOu
     <StyledCardList>
       <AddToOutfit mainProduct={mainProduct} clickAddOutfit={clickAddOutfit} />
       {outfitData.map((outfit, index) =>
-
         <OutfitCard outfit={outfit} key={index} clickDeleteOutfit={clickDeleteOutfit} />
-
       )}
     </StyledCardList>
 
