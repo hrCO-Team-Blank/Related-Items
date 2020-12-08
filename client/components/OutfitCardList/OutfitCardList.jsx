@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import AddToOutfit from '../AddToOutfit/AddToOutfit.jsx'
 import OutfitCard from '../OutfitCard/OutfitCard.jsx'
 import Carousel from 'styled-components-carousel';
+import { CSSTransition } from 'react-transition-group';
 
 
 const StyledCardList = styled.div`
@@ -12,21 +13,16 @@ const StyledCardList = styled.div`
 const OutfitCardList = ({ outfitData, mainProduct, clickAddOutfit, clickDeleteOutfit }) => {
 
   return (
-    < div >
-      {outfitData && <StyledCardList>
-        <AddToOutfit mainProduct={mainProduct} clickAddOutfit={clickAddOutfit} />
-        {/* <Carousel
-          left
-          infinite
-          showIndicator
-          slidesToShow={3}
-        > */}
-        {outfitData.length && outfitData.map((outfit, index) =>
-          <OutfitCard outfit={outfit} key={index} clickDeleteOutfit={clickDeleteOutfit} />
-        )}
-        {/* </Carousel> */}
-      </StyledCardList>}
-    </div >
+
+    <StyledCardList>
+      <AddToOutfit mainProduct={mainProduct} clickAddOutfit={clickAddOutfit} />
+      {outfitData.map((outfit, index) =>
+
+        <OutfitCard outfit={outfit} key={index} clickDeleteOutfit={clickDeleteOutfit} />
+
+      )}
+    </StyledCardList>
+
   );
 }
 

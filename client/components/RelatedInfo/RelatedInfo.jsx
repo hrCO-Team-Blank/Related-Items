@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import StarRating from '../StarRating/StarRating.jsx'
 import axios from 'axios';
+import styled from 'styled-components'
 
+const StyledInfo = styled.div`
+line-height: 1.4;
+margin-left: 10px
+`
 
 const RelatedInfo = ({ product }) => {
 
@@ -19,20 +24,23 @@ const RelatedInfo = ({ product }) => {
       .catch(err => console.log(err))
   }, []);
 
+
+
   return (
     <div>
-      <div>
-        {info.length && info[0]['category']}
-      </div>
-      <div>
-        {info.length && info[0]['name']}
-      </div>
-      <div>
-        $ {info.length && info[0]['default_price']}
-      </div>
-      <div>
+      <StyledInfo>
         <StarRating outfit={product} />
-      </div>
+      </StyledInfo>
+      <StyledInfo>
+        {info.length && info[0]['name']}
+      </StyledInfo>
+      <StyledInfo>
+        <em>{info.length && info[0]['category']}</em>
+      </StyledInfo>
+
+      <StyledInfo>
+        $ {info.length && info[0]['default_price']}
+      </StyledInfo>
     </div>
   );
 }

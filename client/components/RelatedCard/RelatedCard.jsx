@@ -8,16 +8,11 @@ import Modal from 'react-modal'
 Modal.setAppElement('#RelatedAndOutfit')
 
 const StyledCard = styled.div`
-
 justify-content: space-around;
-// flex-grow: 4;
-// flex-shrink: 3;
-// flex-basis: 100%
 height: 350px;
 width: 250px;
 margin: 5px;
 padding: 0px;
-border: 1px solid black;
 `;
 
 const StyledStarImage = styled.img`
@@ -37,6 +32,7 @@ const StyledStarImage = styled.img`
     transform: scale(1.2);
   }
 `;
+
 
 const RelatedCard = ({ product, mainProduct }) => {
 

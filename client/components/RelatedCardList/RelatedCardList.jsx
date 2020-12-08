@@ -18,11 +18,46 @@ const RelatedCardList = ({ relatedData, mainProduct }) => {
   return (
 
     <StyledCarousel
-      left
+      center
       showArrows
       showIndicator
       slidesToShow={3}
       swipeable={false}
+      breakpoints={
+        [
+          {
+            size: 300,
+            settings: {
+              slidesToShow: 1,
+              showArrows: true,
+              showIndicator: true,
+            },
+          },
+          {
+            size: 600,
+            settings: {
+              slidesToShow: 2,
+              showArrows: true,
+              showIndicator: true,
+            },
+          },
+          {
+            size: 900,
+            settings: {
+              slidesToShow: 3,
+              showArrows: true,
+              showIndicator: true,
+            },
+          },
+          {
+            size: 1200,
+            settings: {
+              slidesToShow: 4,
+              showArrows: true,
+              showIndicator: true,
+            },
+          },
+        ]}
     >
       {
         relatedData.length && relatedData.map((product, index) =>
@@ -39,29 +74,29 @@ export default RelatedCardList;
 
 // breakpoints = {
 //   [
-//   {
-//     size: 200,
-//     settings: {
-//       slidesToShow: 1,
-//       showArrows: true,
-//       showIndicator: true,
+//     {
+//       size: 200,
+//       settings: {
+//         slidesToShow: 1,
+//         showArrows: true,
+//         showIndicator: true,
+//       },
 //     },
-//   },
-//   {
-//     size: 600,
-//     settings: {
-//       slidesToShow: 3,
-//       showArrows: true,
-//       showIndicator: true,
+//     {
+//       size: 600,
+//       settings: {
+//         slidesToShow: 3,
+//         showArrows: true,
+//         showIndicator: true,
+//       },
 //     },
-//   },
-//   {
-//     size: 1000,
-//     settings: {
-//       slidesToShow: 4,
-//       showArrows: true,
-//       showIndicator: true,
-//       center: true,
+//     {
+//       size: 1000,
+//       settings: {
+//         slidesToShow: 4,
+//         showArrows: true,
+//         showIndicator: true,
+//         center: true,
+//       },
 //     },
-//   },
 // ]}

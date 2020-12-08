@@ -2,8 +2,28 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components'
 import axios from 'axios';
 
+const StyledExitButton = styled.button`
+position: relative;
+height: 35px;
+width: 35px;
+top: 5%;
+left: 95%;
+border: black 1px;
+cursor: pointer;
+margin: 0px;
+color: white;
+background-color: black;
+border-radius: 50%;
+shadow: 10px 10px;
+:hover {
+  background-color: grey;
+  transform: scale(1.2);
+}
+`;
 
-
+const StyledCols = styled.td`
+text-align: center;
+`
 const Comparison = ({ mainProduct, product, setModalIsOpen }) => {
 
   const [main, setMain] = useState([]);
@@ -20,10 +40,8 @@ const Comparison = ({ mainProduct, product, setModalIsOpen }) => {
   }, []);
 
 
-  const StyledCols = styled.td`
-  text-align: center;
-  }
-`
+
+
   // Render Features
   // Make array of objects: {feature: [main, related]} Ex. {sole: [rubber, plasic]} or {material: [null, leather]}
   let featureObj = {}
@@ -44,42 +62,43 @@ const Comparison = ({ mainProduct, product, setModalIsOpen }) => {
       }
     }
   }
+
   return (
     <div>
-      <button onClick={(e) => { e.stopPropagation(); setModalIsOpen(false); }}> X </button>
+      <StyledExitButton onClick={(e) => { e.stopPropagation(); setModalIsOpen(false); }}> X </StyledExitButton>
       {Object.keys(featureObj).length &&
         <table >
           <tr>
             <th>{main[0]['name']}</th>
-            <th>Comparison</th>
+            <th></th>
             <th>{related[0]['name']}</th>
           </tr>
           <tr>
             <StyledCols>{main[0]['slogan']}</StyledCols>
-            <StyledCols>Slogan</StyledCols>
+            <StyledCols><strong>Slogan</strong></StyledCols>
             <StyledCols>{related[0]['slogan']}</StyledCols>
           </tr>
           <tr>
             <StyledCols>{main[0]['description']}</StyledCols>
-            <StyledCols>Description</StyledCols>
+            <StyledCols><strong>Description</strong></StyledCols>
             <StyledCols>{related[0]['description']}</StyledCols>
           </tr>
           <tr>
             <StyledCols>{main[0]['category']}</StyledCols>
-            <StyledCols>Category</StyledCols>
+            <StyledCols><strong>Category</strong></StyledCols>
             <StyledCols>{related[0]['category']}</StyledCols>
           </tr>
           <tr>
-            <StyledCols>{main[0]['default_price']}</StyledCols>
-            <StyledCols>Price</StyledCols>
-            <StyledCols>{related[0]['default_price']}</StyledCols>
+            <StyledCols>${main[0]['default_price']}</StyledCols>
+            <StyledCols><strong>Price</strong></StyledCols>
+            <StyledCols>${related[0]['default_price']}</StyledCols>
           </tr>
           {Object.keys(featureObj).map(key => {
             return (
               <tr>
-                <StyledCols>{featureObj[key][0] || 'N/A'}</StyledCols>
-                <StyledCols>{key}</StyledCols>
-                <StyledCols>{featureObj[key][1] || 'N/A'}</StyledCols>
+                <StyledCols>{featureObj[key][0] || '----'}</StyledCols>
+                <StyledCols><strong>{key}</strong></StyledCols>
+                <StyledCols>{featureObj[key][1] || '----'}</StyledCols>
               </tr>
             )
           })

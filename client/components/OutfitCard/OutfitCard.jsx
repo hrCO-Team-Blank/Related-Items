@@ -3,13 +3,13 @@ import OutfitThumbnail from '../OutfitThumbnail/OutfitThumbnail.jsx'
 import OutfitInfo from '../OutfitInfo/OutfitInfo.jsx'
 import styled from 'styled-components'
 
+
 const StyledCard = styled.div`
 justify-content: space-around;
 height: 350px;
 width: 250px;
 margin: 5px;
 padding: 0px;
-border: 1px solid black;
 `;
 
 const StyledExitButton = styled.button`
@@ -21,11 +21,12 @@ left: 80%;
 border: black 1px;
 cursor: pointer;
 margin: 0px;
-background-color: grey;
+color: white;
+background-color: black;
 border-radius: 50%;
 shadow: 10px 10px;
 :hover {
-  background-color: black;
+  background-color: grey;
   transform: scale(1.2);
 }
 `;
@@ -33,15 +34,13 @@ shadow: 10px 10px;
 const OutfitCard = ({ outfit, clickDeleteOutfit }) => {
 
   return (
-    <div>
-      <StyledCard >
-        <StyledExitButton onClick={() => { clickDeleteOutfit(outfit) }}>
-          X
+    <StyledCard >
+      <StyledExitButton onClick={() => { clickDeleteOutfit(outfit) }}>
+        X
         </StyledExitButton>
-        <OutfitThumbnail outfit={outfit} />
-        <OutfitInfo outfit={outfit} />
-      </StyledCard>
-    </div >
+      <OutfitThumbnail outfit={outfit} />
+      <OutfitInfo outfit={outfit} />
+    </StyledCard>
   );
 }
 

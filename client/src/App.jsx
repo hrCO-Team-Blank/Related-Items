@@ -4,8 +4,13 @@ import RelatedCardList from '../components/RelatedCardList/RelatedCardList.jsx'
 import OutfitCardList from '../components/OutfitCardList/OutfitCardList.jsx'
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom'
 import axios from 'axios';
+import styled from 'styled-components'
+
 
 // import localStorage from 'local-storage';
+const StyledHeader = styled.h1`
+  margin-left: 20px
+`;
 
 class RelatedAndOutfitApp extends Component {
   constructor(props) {
@@ -77,7 +82,7 @@ class RelatedAndOutfitApp extends Component {
     return (
       <div>
         <div>
-          <h1>RELATED PRODUCTS</h1>
+          <StyledHeader>Customers who bought this item also bought</StyledHeader>
           <RelatedCardList
             //passing array of indices
             relatedData={this.state.relatedData}
@@ -86,7 +91,7 @@ class RelatedAndOutfitApp extends Component {
         </div>
 
         <div>
-          <h1>YOUR OUTFIT</h1>
+          <StyledHeader>Your Outfit</StyledHeader>
           <OutfitCardList
             clickAddOutfit={this.clickAddOutfit}
             outfitData={this.state.outfitData}
